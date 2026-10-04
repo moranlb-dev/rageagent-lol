@@ -11552,7 +11552,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
     const [custom, setCustom] = (0, import_react21.useState)(null);
     const roll = (id2, mid) => {
       const f3 = failures.find((x) => x.id === id2);
-      const m2 = ministers[mid ?? f3.minister];
+      const m2 = ministers[mid ?? f3?.minister ?? "pm"];
       const c2 = Math.floor(Math.random() * culprits.length);
       setDraw({ fid: id2, mid: m2.id, culprit: c2, excuse: Math.floor(Math.random() * m2.excuses.length), why: Math.floor(Math.random() * culprits[c2].why.length), n: count + 1 });
       setCount(count + 1);
@@ -11567,7 +11567,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
       const t = (inRef.current?.value ?? text).trim().slice(0, 140);
       if (!t) return;
       const r = matchMinister(t);
-      setCustom(r);
+      setCustom({ mid: r.id, hit: r.hit });
       setFid("custom");
       roll("custom", r.id);
     };
